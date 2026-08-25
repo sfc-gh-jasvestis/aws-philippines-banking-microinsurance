@@ -1,6 +1,6 @@
 -- ============================================================================
 -- 09_AWS_INTEGRATION.SQL — AWS services for Microinsurance Claims Analytics & Fraud Detection
--- Account: 018437500440 | Region: ap-southeast-1
+-- Account: <YOUR_AWS_ACCOUNT_ID> | Region: ap-southeast-1
 -- Skip this script for Snowflake-only build
 -- ============================================================================
 USE DATABASE MICROINSURANCE;
@@ -72,5 +72,5 @@ CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION aws_philippines_banking_microinsur
   ENABLED = TRUE
   COMMENT = 'SNS access for Microinsurance Claims Analytics & Fraud Detection alerts';
 
--- SNS Topic ARN: arn:aws:sns:ap-southeast-1:018437500440:sea-demos-aws-philippines-banking-microinsurance
+-- SNS Topic ARN: arn:aws:sns:ap-southeast-1:<YOUR_AWS_ACCOUNT_ID>:sea-demos-aws-philippines-banking-microinsurance
 
