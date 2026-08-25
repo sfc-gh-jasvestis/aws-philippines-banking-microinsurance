@@ -120,7 +120,7 @@ Industry research and Snowflake customer outcomes:
 - **Philippine microinsurance market grew 28% in 2023 to ₱12B in premiums** — [IC Philippines](https://www.insurance.gov.ph/statistics/)
 - **AI-powered claims processing reduces cycle time by 60-80%** — [McKinsey Insurance](https://www.mckinsey.com/industries/financial-services/our-insights)
 - **Automated fraud detection saves insurers 15-30% in claims leakage** — [Deloitte Insurance](https://www2.deloitte.com/global/en/pages/financial-services/articles/insurance-outlook.html)
-
+- **Western Union** (Snowflake customer): processes 1B+ cross-border transactions on Snowflake with real-time compliance and fraud detection -- [snowflake.com/customers/western-union](https://www.snowflake.com/en/customers/all-customers/case-study/western-union/)
 
 ## Key Demo Numbers
 
