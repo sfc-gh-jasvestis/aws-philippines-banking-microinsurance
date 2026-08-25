@@ -8,7 +8,7 @@ USE SCHEMA APP;
 CREATE OR REPLACE NOTIFICATION INTEGRATION aws_philippines_banking_microinsurance_EMAIL_INT
   TYPE = EMAIL
   ENABLED = TRUE
-  ALLOWED_RECIPIENTS = ('jonathan.asvestis@snowflake.com');
+  ALLOWED_RECIPIENTS = ('<YOUR_EMAIL>');
 
 -- Alert: FRAUD_FLAG_ALERT
 CREATE OR REPLACE ALERT APP.FRAUD_FLAG_ALERT
@@ -22,7 +22,7 @@ IF (EXISTS (
 THEN
   CALL SYSTEM$SEND_EMAIL(
     'aws_philippines_banking_microinsurance_EMAIL_INT',
-    'jonathan.asvestis@snowflake.com',
+    '<YOUR_EMAIL>',
     '[ALERT] Microinsurance Claims Analytics & Fraud Detection: High-value claim flagged for potential fraud',
     'High-value claim flagged for potential fraud'
   );
@@ -41,7 +41,7 @@ IF (EXISTS (
 THEN
   CALL SYSTEM$SEND_EMAIL(
     'aws_philippines_banking_microinsurance_EMAIL_INT',
-    'jonathan.asvestis@snowflake.com',
+    '<YOUR_EMAIL>',
     '[ALERT] Microinsurance Claims Analytics & Fraud Detection: Claims backlog exceeding 24-hour SLA capacity',
     'Claims backlog exceeding 24-hour SLA capacity'
   );
