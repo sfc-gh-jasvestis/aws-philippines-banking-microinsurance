@@ -35,36 +35,36 @@ export default function HomePage() {
   const executiveCockpit = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <KPICard title="Total Volume" value="₱2.4B" status="neutral" />
-        <KPICard title="NPL Ratio" value="7" status="warning" />
-        <KPICard title="Anomalies Detected" value="3" status="danger" />
-        <KPICard title="Active Branchs" value="124" status="neutral" />
+        <KPICard title="Policies Active" value="8.4M" status="neutral" />
+        <KPICard title="Claims Ratio" value="42%" status="neutral" />
+        <KPICard title="Premium Income" value="₱2.1B" status="neutral" />
+        <KPICard title="Financial Inclusion" value="+1.2M" status="neutral" />
       </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Chart
           data={data?.timeseries || [{ period: 'Loading', value: 0 }]}
           type="line"
           xKey="period"
-          yKeys={[{ key: 'value', name: 'Volume' }]}
-          title="Volume Trend (Weekly)"
+          yKeys={[{ key: 'value', name: 'Policies (M)' }]}
+          title="Policy Growth Trend (Monthly)"
         />
         <Chart
           data={data?.categories || [{ category: 'Loading', count: 0 }]}
           type="bar"
           xKey="category"
-          yKeys={[{ key: 'count', name: 'Count' }]}
-          title="NPL Ratio by Branch"
+          yKeys={[{ key: 'count', name: '₱M' }]}
+          title="Claims by Product Type"
         />
       </div>
       <DataTable
         columns={[
           { key: 'id', header: '#' },
-          { key: 'name', header: 'Branch' },
-          { key: 'status', header: 'Status' },
-          { key: 'value', header: 'Volume' },
+          { key: 'name', header: 'Product' },
+          { key: 'status', header: 'Profitability' },
+          { key: 'value', header: 'Policies (K)' },
         ]}
         data={data?.entities || []}
-        title="Branch Performance"
+        title="Product Performance"
       />
     </div>
   );
@@ -72,16 +72,16 @@ export default function HomePage() {
   const domainTab1 = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <KPICard title="Efficiency" value="87%" />
-        <KPICard title="Utilization" value="72%" />
-        <KPICard title="Growth Rate" value="+8.4%" />
+        <KPICard title="Agent Network" value="42K" />
+        <KPICard title="Digital Enrollment" value="34%" />
+        <KPICard title="Renewal Rate" value="78%" />
       </div>
       <Chart
         data={data?.detail || [{ x: 'Loading', y: 0 }]}
         type="area"
         xKey="x"
-        yKeys={[{ key: 'y', name: 'Index' }]}
-        title="Microinsurance Performance Trend"
+        yKeys={[{ key: 'y', name: 'Policies (K)' }]}
+        title="Distribution Channel Mix"
         height={400}
       />
     </div>
@@ -94,17 +94,17 @@ export default function HomePage() {
           data={data?.breakdown || [{ label: 'A', value: 30 }, { label: 'B', value: 70 }]}
           type="pie"
           xKey="label"
-          yKeys={[{ key: 'value', name: 'Score' }]}
-          title="Risk Distribution"
+          yKeys={[{ key: 'value', name: 'Loss Ratio %' }]}
+          title="Loss Ratio by Province"
         />
         <ActionMemo
-          persona={{ name: 'Philippines Operations Lead', role: 'Director of Microinsurance' }}
+          persona={{ name: 'Ana Marie Villanueva', role: 'VP Microinsurance' }}
           context={{}}
           onGenerate={async () => ({
             subject: 'Action Required',
             body: 'AI-generated recommendation based on current data patterns and predicted trends.',
             urgency: 'HIGH',
-            actions: ['Review top npl ratio findings', 'Optimize branch allocation', 'Prepare quarterly microinsurance report'],
+            actions: ['Launch typhoon parametric insurance for Visayas', 'Expand digital claims for motorcycle accident product', 'Partner with DSWD for bundled gov't assistance insurance'],
           })}
         />
       </div>
@@ -116,9 +116,9 @@ export default function HomePage() {
       <AskAI
         title="Ask AI"
         sampleQuestions={[
-          'Which branchs have the highest npl ratio?',
-          'Show volume trend for the last 30 days',
-          'What is the forecast for next quarter's volume?',
+          'Which provinces have the highest claims ratio?',
+          'Show correlation between typhoon events and claims',
+          'What is the optimal premium for the agricultural microinsurance product?',
         ]}
         mode="both"
         onSubmit={async (question, mode) => {
@@ -178,8 +178,8 @@ export default function HomePage() {
 
   const tabs = [
     { id: 'executive-cockpit', label: 'Executive Cockpit', icon: '📊', content: executiveCockpit },
-    { id: 'domain-1', label: 'Microinsurance Analytics', icon: '📈', content: domainTab1 },
-    { id: 'domain-2', label: 'Alerts & Actions', icon: '⚡', content: domainTab2 },
+    { id: 'domain-1', label: 'Distribution', icon: '📈', content: domainTab1 },
+    { id: 'domain-2', label: 'Claims & Risk', icon: '⚡', content: domainTab2 },
     { id: 'ask-ai', label: 'Ask AI', icon: '🤖', content: askAiTab },
     { id: 'architecture', label: 'Architecture & Data', icon: '🏗️', content: architectureTab },
   ];
