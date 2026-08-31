@@ -47,8 +47,8 @@ export default function HomePage() {
           <GeoMap country="philippines" markers={[{"label": "Manila", "value": "HQ: 247 branches", "color": "blue", "size": "lg"}, {"label": "Cebu", "value": "Visayas: 84 branches", "color": "green", "size": "md"}, {"label": "Davao", "value": "Mindanao: 42", "color": "green", "size": "md"}]} routes={[]} title="Geographic Overview" height={400} />
         </div>
         <div className="lg:col-span-1 grid grid-cols-1 gap-4">
-          <Chart data={data?.timeseries || [{ period: 'Loading', value: 0 }]} type="line" xKey="period" yKeys={[{ key: 'value', name: 'Policies (M)' }]} title="Policy Growth (Monthly)" />
-          <Chart data={data?.categories || [{ category: 'Loading', count: 0 }]} type="bar" xKey="category" yKeys={[{ key: 'count', name: 'PHP M' }]} title="Claims by Product" />
+          <Chart data={data?.timeseries || (() => { const d = []; const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; const base = 120; for (let i = 0; i < 12; i++) d.push({ period: months[i], value: Math.round(base + Math.sin(i/2)*40 + (Math.random()*20-10)) }); return d; })()} type="line" xKey="period" yKeys={[{ key: 'value', name: 'Policies (M)' }]} title="Policy Growth (Monthly)" />
+          <Chart data={data?.categories || [{ category: 'North', count: 82 }, { category: 'Central', count: 74 }, { category: 'South', count: 91 }, { category: 'Highland', count: 68 }, { category: 'Coastal', count: 77 }]} type="bar" xKey="category" yKeys={[{ key: 'count', name: 'PHP M' }]} title="Claims by Product" />
         </div>
       </div>
       <DataTable columns={[
@@ -67,14 +67,14 @@ export default function HomePage() {
         <KPICard title="Digital Enrollment" value="34%" />
         <KPICard title="Renewal Rate" value="78%" />
       </div>
-      <Chart data={data?.detail || [{ x: 'Loading', y: 0 }]} type="area" xKey="x" yKeys={[{ key: 'y', name: 'Policies (K)' }]} title="Distribution Channel Mix" height={400} />
+      <Chart data={data?.detail || [{ x: 'Mon', y: 24 }, { x: 'Tue', y: 28 }, { x: 'Wed', y: 22 }, { x: 'Thu', y: 31 }, { x: 'Fri', y: 26 }, { x: 'Sat', y: 19 }, { x: 'Sun', y: 23 }]} type="area" xKey="x" yKeys={[{ key: 'y', name: 'Policies (K)' }]} title="Distribution Channel Mix" height={400} />
     </div>
   );
 
   const domainTab2 = (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Chart data={data?.breakdown || [{ label: 'A', value: 30 }, { label: 'B', value: 70 }]} type="pie" xKey="label" yKeys={[{ key: 'value', name: 'Loss %' }]} title="Loss Ratio by Province" />
+        <Chart data={data?.breakdown || [{ label: 'Zone North', value: 35 }, { label: 'Zone Central', value: 28 }, { label: 'Zone South', value: 22 }, { label: 'Zone East', value: 15 }]} type="pie" xKey="label" yKeys={[{ key: 'value', name: 'Loss %' }]} title="Loss Ratio by Province" />
         <ActionMemo persona={{ name: 'Ana Marie Villanueva', role: 'VP Microinsurance' }} context={{}} onGenerate={async () => ({ subject: 'Action Required', body: 'AI-generated recommendation based on current data.', urgency: 'HIGH', actions: ['Launch typhoon parametric insurance for Visayas', 'Expand digital claims for motorcycle product', 'Partner with DSWD for bundled insurance'] })} />
       </div>
     </div>
