@@ -52,6 +52,7 @@ export default function HomePage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="lg:col-span-1">
           <GeoMap country="philippines"
+            labels={{ entity: 'Products', event: 'Policies', alert: 'Claims' }}
             regions={data?.regions} markers={[{"label": "Manila", "value": "HQ: 247 branches", "color": "blue", "size": "lg"}, {"label": "Cebu", "value": "Visayas: 84 branches", "color": "green", "size": "md"}, {"label": "Davao", "value": "Mindanao: 42", "color": "green", "size": "md"}]} routes={[]} title="Geographic Overview" height={400} />
         </div>
         <div className="lg:col-span-1 grid grid-cols-1 gap-4">
@@ -62,9 +63,14 @@ export default function HomePage() {
       <DataTable columns={[
           { key: 'id', header: '#' },
           { key: 'name', header: 'Product' },
+          { key: 'region', header: 'Region' },
           { key: 'status', header: 'Profitability' },
-          { key: 'value', header: 'Policies (K)' },
-      ]} data={data?.entities || []} title="Product Performance" />
+          { key: 'm1', header: 'Policies (K)' },
+          { key: 'm2', header: 'Premium Income' },
+          { key: 'm3', header: 'Digital Enrollment' },
+          { key: 'events', header: 'Policies' },
+          { key: 'alerts', header: 'Claims' },
+        ]} data={data?.entities || []} title="Product Performance" />
     </div>
   );
 
