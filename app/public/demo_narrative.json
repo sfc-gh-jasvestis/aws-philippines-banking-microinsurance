@@ -1,0 +1,77 @@
+{
+  "title": "Philippines Microinsurance Claims Operations",
+  "duration": "6 minutes",
+  "thesis": "Snowflake turns small-ticket premium payments and claim notifications from a fictional Philippine microinsurer into claims KPIs, 7-day investigation-referral risk scores, claim document rejection anomalies and grounded AI answers, so claims teams can settle simple claims fast and look closely only where it matters.",
+  "tabs": [
+    {
+      "id": "executive-cockpit",
+      "persona": { "name": "Maria Teresa Villanueva", "role": "Head of Claims (fictional)", "avatar": "" },
+      "talking_points": [
+        "40 microinsurance plans, one product in one city, across Quezon City, Cebu City, Davao City, Iloilo City and Tacloban City; premiums are small and paid often, so volumes run to millions of payments.",
+        "Five product lines: hospital cash, personal accident, microlife, home and property, and livelihood cover for small businesses.",
+        "Claims per 1,000 premium payments, claims notified, referrals to claims investigation and premium value in PHP are each a numerator over a denominator in a curated dynamic table.",
+        "The claim-cause chart separates causes that are often referred, such as incomplete claim documents, from the two city-wide typhoon events in Tacloban City and Iloilo City, whose claims settle directly."
+      ],
+      "show": ["KPI cards", "Daily claims", "Claims by cause", "Plan table"],
+      "call_out": "One governed set of claims KPIs, traceable to plan-day rows",
+      "transition": { "next_tab": "predictive", "line": "Which plans should the claims team watch this week?" }
+    },
+    {
+      "id": "predictive",
+      "persona": { "name": "Paolo Reyes Santos", "role": "Claims Analyst (fictional)", "avatar": "" },
+      "talking_points": [
+        "Snowflake ML classification scores each plan's probability that a claim is referred to investigation in the next 7 days.",
+        "The holdout line reports precision and recall on the most recent labelled days, next to the base rate, so the lift is visible and honest.",
+        "Anomaly detection flags plans whose claim document rejection rate jumps, and the forecast projects portfolio-wide claims per day for the next 14 days for staffing."
+      ],
+      "show": ["Holdout metrics", "Risk by plan", "Claims forecast", "Claim document rejection anomalies"],
+      "call_out": "Evaluated ML inside the data platform",
+      "transition": { "next_tab": "planning", "line": "Are claims file audits keeping up?" }
+    },
+    {
+      "id": "planning",
+      "persona": { "name": "Maria Teresa Villanueva", "role": "Head of Claims (fictional)", "avatar": "" },
+      "talking_points": [
+        "Claims file audit compliance, claim file coverage and pending documents show where files are incomplete.",
+        "The scatter of audit compliance against referred claims by plan shows where missed audits and referrals move together; it is an association, not proof of cause.",
+        "The action memo drafts three prioritised actions from the KPI, plan, claim-cause and risk tables only, for a human to review."
+      ],
+      "show": ["Audit compliance and file coverage", "Audit compliance vs referred claims", "Action memo"],
+      "call_out": "Grounded draft actions, with a human in the loop",
+      "transition": { "next_tab": "live", "line": "What happens when a claim is referred right now?" }
+    },
+    {
+      "id": "live",
+      "persona": { "name": "Paolo Reyes Santos", "role": "Claims Analyst (fictional)", "avatar": "" },
+      "talking_points": [
+        "Live claim notifications land in RAW.LIVE_CLAIMS, from the Snowflake simulator or from Amazon Data Firehose through S3 and Snowpipe.",
+        "The Snowflake alert logs REFERRED claims with an SOP hint and the plan's current risk band, then emails the on-call claims officer."
+      ],
+      "show": ["Events loaded and lag", "Latest claim events", "Alert log"],
+      "call_out": "From referred claim to follow-up in one platform",
+      "transition": { "next_tab": "ask-ai", "line": "Now ask the data directly." }
+    },
+    {
+      "id": "ask-ai",
+      "persona": { "name": "Maria Teresa Villanueva", "role": "Head of Claims (fictional)", "avatar": "" },
+      "talking_points": [
+        "The Cortex Agent uses Cortex Analyst over the semantic view for metrics, and Cortex Search over 14 synthetic claims-handling SOPs.",
+        "Each answer shows the generated SQL and the SOPs it cited. The SOPs are operational only and make no legal or regulatory statements."
+      ],
+      "show": ["Ask a sample question", "Generated SQL", "SOP citations"],
+      "call_out": "Natural-language answers you can audit",
+      "transition": { "next_tab": "architecture", "line": "Here is how it is built." }
+    },
+    {
+      "id": "architecture",
+      "persona": { "name": "Maria Teresa Villanueva", "role": "Head of Claims (fictional)", "avatar": "" },
+      "talking_points": [
+        "Two builds share one core: Snowflake only, or AWS + Snowflake (Amazon Data Firehose, S3, Bedrock, QuickSight and Amazon Q).",
+        "Everything shown is synthetic demo data, rebuilt reproducibly from the repo."
+      ],
+      "show": ["Both architecture diagrams"],
+      "call_out": "One governed core, with an optional AWS edge",
+      "transition": { "next_tab": "", "line": "Questions?" }
+    }
+  ]
+}
